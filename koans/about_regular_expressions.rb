@@ -64,7 +64,7 @@ class AboutRegularExpressions < Neo::Koan
   end
 
   def test_slash_s_is_a_shortcut_for_a_whitespace_character_class
-    assert_equal ' \t\n', "space: \t\n"[/\s+/]
+    assert_equal " \t\n", "space: \t\n"[/\s+/]
   end
 
   def test_slash_w_is_a_shortcut_for_a_word_character_class
@@ -83,7 +83,7 @@ class AboutRegularExpressions < Neo::Koan
 
   def test_shortcut_character_classes_are_negated_with_capitals
     assert_equal "the number is ", "the number is 42"[/\D+/]
-    assert_equal " \t\n", "space: \t\n"[/\S+/]
+    assert_equal "space:", "space: \t\n"[/\S+/]
     # ... a programmer would most likely do
     assert_equal " = ", "variable_1 = 42"[/[^a-zA-Z0-9_]+/]
     assert_equal " = ", "variable_1 = 42"[/\W+/]
@@ -102,7 +102,7 @@ class AboutRegularExpressions < Neo::Koan
   end
 
   def test_caret_anchors_to_the_start_of_lines
-    assert_equal "42", "num 42\n2 lines"[/^\d+/]
+    assert_equal "2", "num 42\n2 lines"[/^\d+/]
   end
 
   def test_dollar_sign_anchors_to_the_end_of_lines
@@ -110,7 +110,7 @@ class AboutRegularExpressions < Neo::Koan
   end
 
   def test_slash_b_anchors_to_a_word_boundary
-    assert_equal "vine.", "bovine vines"[/\bvine./]
+    assert_equal "vines", "bovine vines"[/\bvine./]
   end
 
   # ------------------------------------------------------------------
@@ -127,7 +127,7 @@ class AboutRegularExpressions < Neo::Koan
   end
 
   def test_variables_can_also_be_used_to_access_captures
-    assert_equal "Gray", "Name:  Gray, James"[/(\w+), (\w+)/]
+    assert_equal "Gray, James", "Name:  Gray, James"[/(\w+), (\w+)/]
     assert_equal "Gray", $1
     assert_equal "James", $2
   end
